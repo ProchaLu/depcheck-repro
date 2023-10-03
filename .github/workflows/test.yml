@@ -5,24 +5,39 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      # To avoid CRLF in Windows tests, which cause problems with Prettier:
+      # https://github.com/upleveled/preflight/runs/1824397400
+      #
+      # Suggested here: https://github.com/actions/checkout/issues/250#issuecomment-635267458
+      # Example repo: https://github.com/ghdl/ghdl/blob/aa63b5efcd2be66acc26443032df2b251e4b1a7a/.github/workflows/Test.yml#L230-L232
+      - name: Use LF instead of CRLF for clone
+        run: git config --global core.autocrlf input
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - uses: pnpm/action-setup@v2
         with:
           version: 'latest'
 
-      # Use the official setup-node action (sets up Node.js):
-      # https://github.com/actions/setup-node
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: '18'
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install
+
+      - name: Lint
+        run: pnpm lint
+
+      - run: pnpm tsc
+      - run: pnpm tsc --project bin/tsconfig.json
+      - run: pnpm tsc --project docker/tsconfig.json
+      - run: pnpm tsc --project tsconfig.nonsrc.json
 
       - name: Build
         run: pnpm build
 
-      - name: Run test
-        run: pnpm test
+      - name: Test
+        run: pnpm test -- --ci --maxWorkers=2
