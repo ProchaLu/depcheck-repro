@@ -21,5 +21,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Depcheck
-        run: pnpm depcheck
+      - name: Install Preflight
+        run: pnpm add @upleveled/preflight
+
+      - name: Run Preflight
+        run: preflight
