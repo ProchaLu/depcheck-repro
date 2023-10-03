@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@upleveled/preflight": "^2.1.16",
     "@upleveled/react-scripts": "5.0.12",
     "depcheck": "^1.4.6",
     "execa": "^8.0.1",

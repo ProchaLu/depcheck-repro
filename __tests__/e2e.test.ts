@@ -2,12 +2,7 @@ import { expect, test } from '@jest/globals';
 import { execaCommand } from 'execa';
 
 test('Passes in the react-passing test project', async () => {
-  const { stdout, stderr } = await execaCommand(
-    `../../../../bin/preflight.js`,
-    {
-      cwd: '__tests__/fixtures/__temp/react-passing',
-    },
-  );
+  const { stdout, stderr } = await execaCommand(`../../../../bin/preflight.js`);
 
   const stdoutSortedWithoutVersionNumber = stdout
     .replace(/(UpLeveled Preflight) v\d+\.\d+\.\d+(-\d+)?/, '$1')
