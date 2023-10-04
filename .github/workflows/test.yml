@@ -28,6 +28,7 @@ jobs:
         run: pnpm build
 
       - name: Get pnpm bin path
+        shell: cmd
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
 
