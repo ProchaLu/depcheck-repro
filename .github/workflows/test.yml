@@ -18,12 +18,11 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
+      - name: Install dependencies
       - run: pnpm install
 
+      - name: Add Preflight
       - run: pnpm add --global @upleveled/preflight
-
-      - name: Build
-        run: pnpm build
 
       - name: Test
         run: preflight
