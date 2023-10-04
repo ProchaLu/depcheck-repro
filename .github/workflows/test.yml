@@ -4,8 +4,8 @@ on: push
 jobs:
   test:
     runs-on: windows-latest
-    env:
-      PNPM_BIN: ${{ steps.pnpm_bin.outputs.pnpm-bin }}
+    outputs:
+      pnpm-bin: ${{ steps.get_pnpm_bin.outputs.pnpm-bin }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -21,7 +21,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Get pnpm bin directory
-        id: pnpm_bin
+        id: get_pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
 
       - name: Install dependencies
@@ -31,4 +31,4 @@ jobs:
         run: pnpm build
 
       - name: Run depcheck
-        run: ${{ env.PNPM_BIN }}/depcheck
+        run: ${{ needs.test.outputs.pnpm-bin }}/depcheck
