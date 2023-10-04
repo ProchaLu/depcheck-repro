@@ -24,8 +24,5 @@ jobs:
       - name: Build project
         run: pnpm build
 
-      - name: Add Preflight
-        run: pnpm add --global @upleveled/preflight
-
-      - name: Test
-        run: preflight
+      - name: Run Depcheck
+        run: pnpm depcheck --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
