@@ -32,5 +32,5 @@ jobs:
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
 
       - name: Run depcheck with path
-        shell: cmd
+        shell: powershell
         run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="depcheck,@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
