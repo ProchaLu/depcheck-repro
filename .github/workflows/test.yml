@@ -27,5 +27,10 @@ jobs:
       - name: Build project
         run: pnpm build
 
+      - name: Get pnpm bin path
+        id: pnpm_bin
+        run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
+
       - name: Run depcheck with path
-        run: D:/a/depcheck-repro/depcheck-repro/node_modules/.bin/depcheck
+        shell: cmd.exe
+        run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}\depcheck
