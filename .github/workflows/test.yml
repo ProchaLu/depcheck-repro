@@ -32,5 +32,5 @@ jobs:
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
 
       - name: Run depcheck with path
-        shell: cmd.exe
+        shell: cmd
         run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}\depcheck
