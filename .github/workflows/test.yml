@@ -19,10 +19,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-      - run: pnpm install
+        run: pnpm install
 
       - name: Add Preflight
-      - run: pnpm add --global @upleveled/preflight
+        run: pnpm add --global @upleveled/preflight
 
       - name: Test
         run: preflight
