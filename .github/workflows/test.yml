@@ -26,6 +26,18 @@ jobs:
       - name: Install Preflight
         run: pnpm add --global @upleveled/preflight
 
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\.bin
+
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
