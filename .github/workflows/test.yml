@@ -29,13 +29,10 @@ jobs:
       - name: Build project
         run: pnpm build
 
-      - name: pnpm bin --global
-        run: pnpm bin --global
-
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
-        working-directory: D:\a
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5
 
       - name: Run depcheck with path cmd
         shell: cmd
