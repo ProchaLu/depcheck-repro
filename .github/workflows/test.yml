@@ -44,12 +44,14 @@ jobs:
       - run: dir
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin
 
+      - run: type C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin/depcheck
+
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
 
-      - run: node C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\depcheck@1.4.5\node_modules\depcheck\bin\depcheck.js --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
+      # - run: node C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\depcheck@1.4.5\node_modules\depcheck\bin\depcheck.js --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
 
       # - name: Run depcheck with path cmd
       #   run: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin/depcheck.CMD --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
