@@ -30,7 +30,8 @@ jobs:
       - name: Log pnpm bin path
         shell: bash
         run: |
-          pnpmPath=$(node -e "console.log(require('path').join(process.cwd(), require('execa').sync('pnpm', ['bin'], { cwd: require('path').dirname(require('url').fileURLToPath(import.meta.url)) }).stdout))")
+          currentDir=$(pwd)
+          pnpmPath=$(node -e "const path = require('path'); const execa = require('execa'); const cwd = path.resolve('${currentDir}'); const binPath = execa.sync('pnpm', ['bin'], { cwd }).stdout; console.log(path.join(cwd, binPath));")
           echo "pnpm bin path: $pnpmPath"
 
       - name: Get pnpm bin path
