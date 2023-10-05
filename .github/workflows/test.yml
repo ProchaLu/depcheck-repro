@@ -26,13 +26,10 @@ jobs:
       - name: Install Preflight
         run: pnpm add --global @upleveled/preflight
 
-      - name: Build project
-        run: pnpm build
-
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
-        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
 
       - name: Run depcheck with path cmd
         shell: cmd
