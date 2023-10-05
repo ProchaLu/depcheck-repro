@@ -33,6 +33,9 @@ jobs:
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
 
       - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global
+
+      - run: dir
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules
 
       - run: dir
