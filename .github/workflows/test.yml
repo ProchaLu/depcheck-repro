@@ -27,6 +27,11 @@ jobs:
       - name: Build project
         run: pnpm build
 
+      - name: Log pnpm bin path
+        run: |
+          pnpmPath=$(node -e "console.log(require('path').join(process.cwd(), require('execa').sync('pnpm', ['bin'], { cwd: require('path').dirname(require('url').fileURLToPath(import.meta.url)) }).stdout))")
+          echo "pnpm bin path: $pnpmPath"
+
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
