@@ -27,11 +27,20 @@ jobs:
       - name: Build project
         run: pnpm build
 
-      - name: Log pnpm bin path
+      - name: Add Preflight
+        run: pnpm add --global @upleveled/preflight
+
+      - name: Test bash
         shell: bash
-        run: |
-          pnpmPath=$(node -e "const path = require('path'); const execa = require('execa'); const cwd = path.resolve(process.cwd()); const binPath = execa.sync('pnpm', ['bin'], { cwd }).stdout; console.log(path.join(cwd, binPath));")
-          echo "pnpm bin path: $pnpmPath"
+        run: preflight
+
+      - name: Test cmd
+        shell: cmd
+        run: preflight
+
+      - name: Test powershell
+        shell: powershell
+        run: preflight
 
       - name: Get pnpm bin path
         id: pnpm_bin
