@@ -1,6 +1,5 @@
 name: Test
-on:
-  push
+on: push
 
 jobs:
   test:
@@ -30,9 +29,13 @@ jobs:
       - name: Build project
         run: pnpm build
 
+      - name: pnpm bin --global
+        run: pnpm bin --global
+
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
+        working-directory: D:\a
 
       - name: Run depcheck with path cmd
         shell: cmd
