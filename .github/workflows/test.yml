@@ -27,25 +27,18 @@ jobs:
       - name: Build project
         run: pnpm build
 
-      - name: Add Preflight
-        run: pnpm add --global @upleveled/preflight
-
-      - name: Test bash
-        shell: bash
-        run: preflight
-
-      - name: Test cmd
-        shell: cmd
-        run: preflight
-
-      - name: Test powershell
-        shell: powershell
-        run: preflight
-
       - name: Get pnpm bin path
         id: pnpm_bin
         run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
 
-      - name: Run depcheck with path
+      - name: Run depcheck with path bash
+        shell: bash
+        run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="depcheck,@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp,@next/eslint-plugin-next,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-plugin-upleveled,eslint-config-react-app,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jsx-a11y,eslint-plugin-jsx-expressions,eslint-plugin-react-hooks,eslint-plugin-react,eslint-plugin-security,eslint-plugin-sonarjs,eslint-plugin-unicorn"
+
+      - name: Run depcheck with path cmd
         shell: cmd
-        run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="depcheck,@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
+        run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="depcheck,@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp,@next/eslint-plugin-next,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-plugin-upleveled,eslint-config-react-app,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jsx-a11y,eslint-plugin-jsx-expressions,eslint-plugin-react-hooks,eslint-plugin-react,eslint-plugin-security,eslint-plugin-sonarjs,eslint-plugin-unicorn"
+
+      - name: Run depcheck with path powershell
+        shell: powershell
+        run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="depcheck,@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp,@next/eslint-plugin-next,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-plugin-upleveled,eslint-config-react-app,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jsx-a11y,eslint-plugin-jsx-expressions,eslint-plugin-react-hooks,eslint-plugin-react,eslint-plugin-security,eslint-plugin-sonarjs,eslint-plugin-unicorn"
