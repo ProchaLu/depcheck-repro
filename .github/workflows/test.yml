@@ -36,7 +36,10 @@ jobs:
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules
 
       - run: dir
-        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\.bin
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin
 
       - name: Get pnpm bin path
         id: pnpm_bin
@@ -44,7 +47,6 @@ jobs:
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
 
       - name: Run depcheck with path cmd
-        shell: cmd
         run: ${{ steps.pnpm_bin.outputs.pnpm-bin }}/depcheck --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
 
       - name: Run Preflight
