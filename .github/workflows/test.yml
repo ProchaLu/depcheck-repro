@@ -26,6 +26,8 @@ jobs:
       - name: Install Preflight
         run: pnpm add --global @upleveled/preflight
 
+      - run: preflight
+
       - run: dir
         working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\
 
