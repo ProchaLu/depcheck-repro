@@ -4,15 +4,17 @@ on: push
 jobs:
   test:
     runs-on: windows-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 'latest'
 
-      - name: Use Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -21,11 +23,44 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build project
-        run: pnpm build
-
-      - name: Add Preflight
+      - name: Install Preflight
         run: pnpm add --global @upleveled/preflight
 
-      - name: Test
+      - run: preflight
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules
+
+      - run: dir
+        working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin
+
+      - run: type C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin/depcheck
+
+      # - name: Get pnpm bin path
+      #   id: pnpm_bin
+      #   run: echo "::set-output name=pnpm-bin::$(pnpm bin)"
+      #   working-directory: C:\Users\runneradmin\setup-pnpm\node_modules\.bin
+
+      - run: node C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\.pnpm\depcheck@1.4.5\node_modules\depcheck\bin\depcheck.js --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
+
+      # - name: Run depcheck with path cmd
+      #   run: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin/depcheck.CMD --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
+
+      - name: Run depcheck with path cmd
+        shell: cmd
+        run: C:\Users\runneradmin\setup-pnpm\node_modules\.bin\global\5\node_modules\@upleveled\preflight\node_modules\.bin/depcheck --ignores="@graphql-codegen/cli,@testing-library/user-event,@tailwindcss/jit,autoprefixer,postcss,tailwindcss,sass,babel-eslint,eslint-config-next,stylelint,stylelint-config-upleveled,babel-jest,cypress,jest,jest-environment-jsdom,jest-puppeteer,playwright,puppeteer,expect,typescript,@types/*,sharp"
+
+      - name: Run Preflight
         run: preflight
